@@ -25,6 +25,18 @@ python app.py
 
     pip install mysql-connector-python
 
+##### Instala Pillow para la manipulación de imagenes
+
+    pip install pillow
+
 ##### Instalación de Flask-CORS
 
+    pip install flask-cors
+
+##### Instalación de Flask-SocketIO
+
+    pip install flask-socketio
+
 ##### Flask-JWT-Extended: Este es uno de los paquetes más completos y fáciles de usar para la implementación de JWT en Flask. Proporciona muchas funcionalidades, como el manejo de acceso basado en roles, refresco de tokens, y más.
+
+- Validar el peso y la extension de foto en el front
