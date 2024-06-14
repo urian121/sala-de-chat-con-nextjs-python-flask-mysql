@@ -1,13 +1,19 @@
-Lo primero seria crear tu entorno virtual, ejecutarndo
+# Sala de Chat con Next.js, Python, Flask y MySQL
 
-virtualenv env
-Activas tu entorno virtual
+#### Pasos
 
-. env/Scripts/activate
+##### Crear tu entorno virtual, ejecutando
 
-python app.py
+    virtualenv env
+    Activas tu entorno virtual
 
-#### Instalar
+    . env/Scripts/activate
+
+##### Crear el archivo requirements.txt
+
+    pip freeze > requirements.txt
+
+#### Instalar paquetes necesarios en el entorno virtual
 
 ##### Instala el framework Flask
 
