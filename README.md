@@ -76,4 +76,6 @@
 
     https://flask-jwt-extended.readthedocs.io/en/stable/
 
-
+#### Referencias
+    Autenticación mediante Json Web Token (JWT) en Flask 🤓 con Flask RestFul + MySQL
+    JSON Web Token, REST API con Flask
