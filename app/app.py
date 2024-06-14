@@ -4,6 +4,9 @@ import requests
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 from flask_cors import CORS
 
+# Importando Swagger UI
+from flask_swagger_ui import get_swaggerui_blueprint
+
 # Importando la conexión a la BD MySQL
 from config.bd import connectionBD
 from controller.controllerLogin import *
@@ -20,8 +23,22 @@ app.config['JWT_SECRET_KEY'] = '97110c78ae51a45af397b6534caef90ebb9b1dcb3380f008
 
 # Inicializar el JWTManager
 jwt = JWTManager(app)
+
 # Habilitar CORS para toda la aplicación
 CORS(app)
+
+# Swagger UI configuration
+SWAGGER_URL = '/api/docs'
+API_URL = '/static/swagger.json'
+
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "API de Flask"
+    }
+)
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
 
 
 # Creando mi decorador para la ruta Home
@@ -44,13 +61,13 @@ def crear_cuenta_de_usuario():
         if process_foto_name:
             # Se han validado todos los datos, se puede continuar con el procesamiento en la base de datos
             resultado_insert = procesar_insert_userBD(
-                user, email_user, tlf_user, pass_user, process_foto_name)
+                nombre_user, email_user, sexo_user, password_user, process_foto_name)
 
             if resultado_insert == 1:
                 return jsonify(
                     {
                         'status': 'OK',
-                        'user': user,
+                        'user': nombre_user,
                         'email_user': email_user,
                     })
             else:
@@ -70,7 +87,7 @@ def login():
     password = request.json.get('password', None)
 
     # Aquí deberías verificar el nombre de usuario y la contraseña con tu base de datos
-    if username != 'test' or password != 'test':
+    if username != 'test' or password != 'password123':
         return jsonify({"msg": "Nombre de usuario o contraseña incorrectos"}), 401
 
     # Crear el token de acceso
