@@ -1,31 +1,23 @@
 from flask import Flask, request, jsonify
 import requests
-from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
+from flask_jwt_extended import JWTManager, create_access_token, jwt_required
+from flask_cors import CORS
 
 app = Flask(__name__)
 
 # Configuración del secreto para JWT
 # Cambia esta clave secreta por una más segura en producción
-app.config['JWT_SECRET_KEY'] = 'super-secret'
+app.config['JWT_SECRET_KEY'] = 'super-secret1234'
 
 # Inicializar el JWTManager
 jwt = JWTManager(app)
+# Habilitar CORS para toda la aplicación
+CORS(app)
 
 
 @app.route('/welcome', methods=['GET'])
 def welcome():
     return jsonify({"message": "¡Bienvenido a la API de Flask!"})
-
-
-@app.route('/sum', methods=['POST'])
-def sum_numbers():
-    data = request.get_json()
-    a = data.get('a')
-    b = data.get('b')
-    result = a + b
-    return jsonify({"result": result})
-
-# Endpoint de autenticación para obtener el token JWT
 
 
 @app.route('/login', methods=['POST'])
@@ -44,9 +36,8 @@ def login():
     access_token = create_access_token(identity=username)
     return jsonify(access_token=access_token)
 
+
 # Ruta protegida con JWT
-
-
 @app.route('/api', methods=['GET'])
 @jwt_required()
 def api():
