@@ -80,3 +80,6 @@
     Autenticación mediante Json Web Token (JWT) en Flask 🤓 con Flask RestFul + MySQL
     JSON Web Token, REST API con Flask
     Construir API REST paso a paso con Django Rest Framework
+
+##### Paquete para configurar fecha con la zona horaria
+    https://pypi.org/project/pytz/
